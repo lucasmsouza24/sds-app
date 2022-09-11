@@ -15,7 +15,10 @@ function SalesCard() {
     const [sales, setSales] = useState<Sale[]>([]);
 
     useEffect(() => {
-        api.get("/sales")
+        const dmin = minDate.toISOString().slice(0, 10);
+        const dmax = maxDate.toISOString().slice(0, 10);
+
+        api.get(`/sales?minDate=${dmin}&maxDate=${dmax}`)
         .then(({status, data}) => {
             console.log(status);
             console.log(data);
@@ -24,7 +27,7 @@ function SalesCard() {
         .catch(error => {
             console.error(error);
         });
-    }, []);
+    }, [minDate, maxDate]);
 
     return (
         <div className="dsmeta-card">
