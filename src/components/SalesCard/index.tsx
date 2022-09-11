@@ -20,8 +20,6 @@ function SalesCard() {
 
         api.get(`/sales?minDate=${dmin}&maxDate=${dmax}`)
         .then(({status, data}) => {
-            console.log(status);
-            console.log(data);
             setSales(data.content);
         })
         .catch(error => {
@@ -81,7 +79,7 @@ function SalesCard() {
                                     <td>R$ {amount}</td>
                                     <td>
                                         <div className="dsmeta-red-btn-container">
-                                            <NotificationButton />
+                                            <NotificationButton saleId={id}/>
                                         </div>
                                     </td>
                                 </tr>
